@@ -16,13 +16,37 @@
     </head>
     <body>
       <header>
-        
+        <form class="" action="" method="post">
+          <label for="">Type de compte</label>
+          <select class="" name="typeCompte">
+            <option value="livretA">Livret A</option>
+            <option value="livret+">livret +</option>
+            <option value="compteEtudiant">compteEtudiant</option>
+          </select><br>
+          <label for="">propriétaire</label>
+          <input type="text" name="owner" value=""><br>
+          <input style='display:none' type="text" name="credit" value="0.93"><br>
+          <input type="submit" name="addAccount" value="créer compte">
+        </form>
       </header>
       <main>
         <?php
-        foreach ($afficheCompte as $key => $value) { ?>
+        foreach ($displayAccounts as $key => $value) { ?>
           <section>
+            <h3><?php echo $value['owner']; ?></h3>
+            <h5><?php echo $value['credit']; ?> €</h5>
+            <p><?php echo $value['type_account']; ?></p>
+            <!-- Form for account detail -->
+            <form class="" action="control/controlDetail.php" method="post">
+              <input type="text" name="idAccount" value="<?php echo $value['id']?>">
+              <input type="submit" name="detail" value="Detail">
+            </form>
 
+            <!-- form for delete account -->
+            <form class="" action="" method="post">
+              <input type="text" name="idAccount" value="<?php echo $value['id']?>">
+              <input type="submit" name="delete" value="Effacer Compte">
+            </form>
           </section>
         <?php
         } ?>
