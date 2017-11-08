@@ -25,7 +25,6 @@
           </select><br>
           <label for="">propriétaire</label>
           <input type="text" name="owner" value=""><br>
-          <input style='display:none' type="text" name="credit" value="0.93"><br>
           <input type="submit" name="addAccount" value="créer compte">
         </form>
       </header>

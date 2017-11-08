@@ -1,6 +1,6 @@
 <?php function chargerClasse($classname)
 {
-  include 'model/entité/'.$classname.'.php';
+  include 'model/entite/'.$classname.'.php';
 }
 
 spl_autoload_register('chargerClasse');
@@ -16,16 +16,18 @@ $displayAccounts = $accountManager->displayAccounts();
 
 //controler part for added account
 
-if (isset($_POST['typeCompte']) and isset($_POST['owner']) and isset($_POST['credit'])){
+if (isset($_POST['typeCompte']) and isset($_POST['owner'])){
   $account = new Account([
     'typeAccount'=>$_POST['typeCompte'],
     'owner'=>$_POST['owner'],
-    'credit'=>$_POST['credit']
+    'credit'=>0.93
   ]);
   $accountManager->addAccount($account);
   header('Location:index.php');
 }
 
+
+//controller for delete account
 if (isset($_POST['delete'])) {
   $account = new Account([
     'id'=>$_POST['idAccount']
@@ -34,6 +36,5 @@ if (isset($_POST['delete'])) {
   header('Location:index.php');
 }
 
-//controller for delete account
 require 'vue/vueIndex.php';
 ?>

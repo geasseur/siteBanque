@@ -5,6 +5,18 @@ class Account{
   protected $owner;
   protected $credit;
 
+  public function __construct(array $donnees){
+    $this->hydrate($donnees);
+  }
+
+  public function hydrate(array $donnees){
+    foreach ($donnees as $key => $value){
+      $method = 'set'.ucfirst($key);
+      if (method_exists($this, $method)){
+        $this->$method($value);
+      }
+    }
+  }
 
     /**
      * Get the value of Id
@@ -97,6 +109,7 @@ class Account{
      */
     public function setCredit($credit)
     {
+        $credit = (float) $credit;
         $this->credit = $credit;
 
         return $this;
