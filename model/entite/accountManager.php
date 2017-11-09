@@ -26,6 +26,17 @@ class AccountManager{
       return $displayAccounts->fetchAll();
     }
 
+    public function selectOwners(){
+      $displayAccounts = $this->_bdd->query('SELECT credit, owner from compte');
+      return $displayAccounts->fetchAll();
+    }
+
+    public function selectOwner($account){
+      $displayAccount = $this->_bdd->query('SELECT credit, owner from compte where owner = \''.$account->getOwner().'\' ');
+      echo $account->getOwner();
+      return $displayAccount->fetch();
+    }
+
     //function for display one account on the detail page
     public function displayAccount(Account $account){
       $displayAccount = $this->_bdd->query('SELECT id, type_account, owner, credit from compte WHERE id = '.$account->getId().' ');
@@ -47,10 +58,17 @@ class AccountManager{
       $creditAccount->execute();
     }
 
-    public function transfertCreditAccount(Account $accountRetrait, Account $accountDepot){
-      $transfer = $this->_bdd->prepare('UPDATE compte set credit = :credit WHERE owner = :ownerRetrait AND owner = :ownerDepot');
-      $transfer->bindValue(':ownerRetrait', $accountRetrait->getCredit(), PDO::PARAM_INT);
-      $transfer->bindValue(':ownerDepot', $accountDepot->getCredit(), PDO::PARAM_INT);
+    public function donorTransfert(Account $accountRetrait){
+      $transfert = $this->_bdd->prepare('UPDATE compte set credit = :credit WHERE owner = :ownerRetrait ');
+      $transfert->bindValue('ownerRetrait', $accountRetrait->getOwner(), PDO::PARAM_STR);
+      $transfert->bindValue(':credit', $accountRetrait->getCredit(), PDO::PARAM_INT);
+      $transfert->execute();
+    }
+
+    public function beneficiaireTransfert(Account $accountRetrait){
+      $transfert = $this->_bdd->prepare('UPDATE compte set credit = :credit WHERE owner = :ownerBeneficiaire ');
+      $transfert->bindValue('ownerBeneficiaire', $accountRetrait->getOwner(), PDO::PARAM_STR);
+      $transfert->bindValue(':credit', $accountRetrait->getCredit(), PDO::PARAM_INT);
       $transfert->execute();
     }
 
