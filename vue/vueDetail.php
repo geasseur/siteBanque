@@ -10,48 +10,49 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="../../bootstrap4/css/bootstrap.css">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
       <header>
-
+        
       </header>
       <main>
-        <article class="">
+        <article class="d-flex flex-column align-items-center card m-5">
           <!-- display account -->
-          <h3><?php echo $displayAccount['owner']; ?></h3>
-          <h5><?php echo $displayAccount['credit']; ?> €</h5>
-          <p><?php echo $displayAccount['type_account']; ?></p>
+          <h1>Compte</h1>
+          <h3>Compte Courant de : <?php echo $displayAccount['owner']; ?></h3>
+          <h5>Solde : <?php echo $displayAccount['credit']; ?> €</h5>
+          <p>Compte de type : <?php echo $displayAccount['type_account']; ?></p>
         </article>
-          <section class="d-flex justify-content-around">
+          <section class="d-flex flex-row flex-wrap justify-content-around align-items-center container-fluid">
             <!-- form for credit account -->
-            <article class='col-sm-10 col-lg-3 d-inline-block'>
+            <article class='h-75 card col-md-10 col-lg-3 d-inline-block p-5'>
               <h4>Créditer son Compte</h4>
               <form class="" action="" method="post">
                 <label for="">créditer compte</label><br>
                 <input style='display:none;' type="text" name="credit" value="<?php echo $displayAccount['credit']; ?>">
                 <input type="text" name="ajoutCredit" value=""><br>
                 <input style='display:none;' type="text" name="idCompte" value="<?php echo $displayAccount['id']; ?>">
-                <input type="submit" name="crediter" value="crediter">
+                <input class='btn btn-primary m-3' type="submit" name="crediter" value="crediter">
               </form>
             </article>
 
             <!-- form for retire money -->
-            <article class='col-sm-10 col-lg-3 d-inline-block'>
+            <article class='h-75 card col-md-10 col-lg-3 d-inline-block p-5'>
               <h3>Effectuer un retrait</h3>
               <form class="" action="" method="post">
                 <label for="">Effectuer Retrait</label><br>
                 <input style='display:none;' type="text" name="credit" value="<?php echo $displayAccount['credit']; ?>">
                 <input type="text" name="retraitCredit" value=""><br>
                 <input style='display:none;' type="text" name="idCompte" value="<?php echo $displayAccount['id']; ?>">
-                <input type="submit" name="retrait" value="retirer argent">
+                <input class='btn btn-primary m-3' type="submit" name="retrait" value="retirer argent">
               </form>
             </article>
 
             <!-- form for transfert credit to another account -->
-            <article class='col-sm-10 col-lg-3 d-inline-block'>
+            <article class='h-75 card col-md-10 col-lg-3 d-inline-block p-5'>
               <h3>Effectuer un virement bancaire</h3>
               <form class="" action="" method="post">
                 <label for="">crédit à transférer : </label>
@@ -67,7 +68,7 @@
                   <?php }
                   } ?>
                 </select><br>
-                <input type="submit" name="transfert" value="effectuer transfert">
+                <input class='btn btn-primary m-3' type="submit" name="transfert" value="effectuer transfert">
               </form>
             </article>
 
@@ -82,8 +83,8 @@
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="../js/plugins.js"></script>
+        <script src="../js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
