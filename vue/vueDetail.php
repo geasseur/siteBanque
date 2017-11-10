@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>Vue detail Compte</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,7 +28,7 @@
         </article>
           <section class="d-flex flex-row flex-wrap justify-content-around align-items-center container-fluid">
             <!-- form for credit account -->
-            <article class='h-75 card col-md-10 col-lg-3 d-inline-block p-5'>
+            <article style='height:300px' class='card col-md-10 col-lg-3 d-flex flex-column justify-content-around p-5 mt-3'>
               <h4>Créditer son Compte</h4>
               <form class="" action="" method="post">
                 <label for="">créditer compte</label><br>
@@ -40,7 +40,7 @@
             </article>
 
             <!-- form for retire money -->
-            <article class='h-75 card col-md-10 col-lg-3 d-inline-block p-5'>
+            <article style='height:300px' class='card col-md-10 col-lg-3 d-flex flex-column justify-content-around p-5 mt-3'>
               <h3>Effectuer un retrait</h3>
               <form class="" action="" method="post">
                 <label for="">Effectuer Retrait</label><br>
@@ -52,7 +52,7 @@
             </article>
 
             <!-- form for transfert credit to another account -->
-            <article class='h-75 card col-md-10 col-lg-3 d-inline-block p-5'>
+            <article style='height:300px' class='card col-md-10 col-lg-3 d-flex flex-column justify-content-around p-5 mt-3'>
               <h3>Effectuer un virement bancaire</h3>
               <form class="" action="" method="post">
                 <label for="">crédit à transférer : </label>
@@ -63,8 +63,8 @@
                 <label for="">effectuer un transfer à :</label>
                 <select class="" name="beneficiaire">
             <?php foreach ($displayOwners as $key => $value) {
-                    if($value['owner'] != $displayAccount['owner']){?>
-                    <option value="<?php echo $value['owner'];?>"><?php echo $value['owner'];?></option>
+                    if($value['id'] != $displayAccount['id']){?>
+                    <option value="<?php echo $value['id'];?>"><?php echo $value['owner'];?></option>
                   <?php }
                   } ?>
                 </select><br>
@@ -86,6 +86,7 @@
           <input class='btn btn-danger' type="submit" name="delete" value="Effacer ce compte">
         </form>
 
+        <!-- form for create a new account for this user -->
         <form class="" action="../index.php" method="post">
           <label for="">Type de compte : </label>
           <select class="" name="typeCompte">

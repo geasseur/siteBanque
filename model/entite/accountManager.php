@@ -22,19 +22,20 @@ class AccountManager{
 
     //function for display all accounts on the index page
     public function displayAccounts(){
-      $displayAccounts = $this->_bdd->query('SELECT id, type_account, owner, credit from compte');
+      $displayAccounts = $this->_bdd->query('SELECT  id, type_account, owner, credit from compte');
       return $displayAccounts->fetchAll();
     }
 
     //function for select all owner for select in 'virement bancaire' form
     public function selectOwners(){
-      $displayAccounts = $this->_bdd->query('SELECT credit, owner from compte');
+      $displayAccounts = $this->_bdd->query('SELECT id, credit, owner from compte');
       return $displayAccounts->fetchAll();
     }
 
     //function for select the owner choose in the form 'virement bancaire'
-    public function selectOwner($account){
-      $displayAccount = $this->_bdd->query('SELECT credit, owner from compte where owner = \''.$account->getOwner().'\' ');
+    public function selectOwner(Account $account){
+      $displayAccount = $this->_bdd->query('SELECT id, credit, owner from compte where id = '.$account->getId().' ');
+      // $displayAccount->bindValue(':id', $account->getId(), PDO::PARAM_INT);
       return $displayAccount->fetch();
     }
 
@@ -62,16 +63,16 @@ class AccountManager{
 
     // update the credit's account who transfert money
     public function donorTransfert(Account $accountRetrait){
-      $transfert = $this->_bdd->prepare('UPDATE compte set credit = :credit WHERE owner = :ownerRetrait ');
-      $transfert->bindValue('ownerRetrait', $accountRetrait->getOwner(), PDO::PARAM_STR);
+      $transfert = $this->_bdd->prepare('UPDATE compte set credit = :credit WHERE id = :id ');
+      $transfert->bindValue('id', $accountRetrait->getId(), PDO::PARAM_INT);
       $transfert->bindValue(':credit', $accountRetrait->getCredit(), PDO::PARAM_INT);
       $transfert->execute();
     }
 
     // update the credit's account who receive the transfert
     public function beneficiaireTransfert(Account $accountRetrait){
-      $transfert = $this->_bdd->prepare('UPDATE compte set credit = :credit WHERE owner = :ownerBeneficiaire ');
-      $transfert->bindValue('ownerBeneficiaire', $accountRetrait->getOwner(), PDO::PARAM_STR);
+      $transfert = $this->_bdd->prepare('UPDATE compte set credit = :credit WHERE id = :id ');
+      $transfert->bindValue(':id', $accountRetrait->getId(), PDO::PARAM_INT);
       $transfert->bindValue(':credit', $accountRetrait->getCredit(), PDO::PARAM_INT);
       $transfert->execute();
     }

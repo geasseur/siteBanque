@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>Index banque</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,13 +23,8 @@
             <img class='col-3' src="http://www.bluemaize.net/im/toys/pig-from-toy-story-3.jpg" class="col-4 col-lg-6" id="logoSite" alt="logo noir et blanc en forme de loup">
             <h1 class="col-4 col-lg-4">Bank of OCUS PORKUS</h1>
           </a>
-
-        </nav>
-      </header>
-      <main class='d-flex'>
-        <!-- section for create new account -->
-        <aside class="ml-5">
-          <form class="" action="" method="post">
+          <!-- form for create new account -->
+          <form class="ml-3" action="" method="post">
             <label for="">Type de compte : </label>
             <select class="" name="typeCompte">
               <option value="livretA">Livret A</option>
@@ -37,21 +32,23 @@
               <option value="compteEtudiant">compteEtudiant</option>
             </select><br>
             <label for="">propriétaire :</label>
-            <input class="col-5" type="text" name="owner" value="">
-            <input type="submit" name="addAccount" value="créer compte">
+            <input class="col-5" type="text" name="owner" value=""><br>
+            <input class='mt-2 btn btn-success' type="submit" name="addAccount" value="créer compte">
           </form>
-        </aside>
+        </nav>
+      </header>
+      <main class='bg-faded'>
         <!-- section where all account are display -->
-        <section class='ml-5 d-flex flex-wrap'>
+        <section class='container-fluid ml-5 d-flex flex-wrap justify-content-around'>
         <?php
         foreach ($displayAccounts as $key => $value) { ?>
-          <section class='card m-3 col-sm-11 col-md-5 col-lg-3'>
+          <section style='height : 400px' class='card m-3 col-sm-11 col-lg-5 col-xl-3 d-flex flex-column justify-content-around'>
               <h3 class='m-4'><?php echo $value['owner']; ?></h3>
               <h5 class='m-4'><?php echo $value['credit']; ?> €</h5>
               <p class='m-4'><?php echo $value['type_account']; ?></p>
               <!-- Form for account detail -->
               <form class="" action="control/controlDetail.php" method="post">
-                <input style='display:none' type="text" name="idAccount" value="<?php echo $value['id']?>">
+                <input class='d-none' type="text" name="idAccount" value="<?php echo $value['id']?>">
                 <input class='btn m-2' type="submit" name="detail" value="Detail">
               </form>
 

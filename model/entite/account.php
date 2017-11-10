@@ -20,8 +20,6 @@ class Account{
 
     /**
      * Get the value of Id
-     *
-     * @return mixed
      */
     public function getId()
     {
@@ -30,22 +28,21 @@ class Account{
 
     /**
      * Set the value of Id
-     *
-     * @param mixed id
-     *
-     * @return self
      */
     public function setId($id)
     {
+      if (is_int($id) and $id >0) {
         $this->id = $id;
-
         return $this;
+      }
+      else {
+        echo 'id doit être un int et supérieur à zero';
+        return;
+      }
     }
 
     /**
      * Get the value of Type Account
-     *
-     * @return mixed
      */
     public function getTypeAccount()
     {
@@ -54,22 +51,22 @@ class Account{
 
     /**
      * Set the value of Type Account
-     *
-     * @param mixed typeAccount
-     *
-     * @return self
      */
     public function setTypeAccount($typeAccount)
     {
+      if ($typeAccount == 'livretA' or $typeAccount == 'livret+' or $typeAccount == 'compteEtudiant') {
         $this->typeAccount = $typeAccount;
 
         return $this;
+      }
+      else {
+        return;
+      }
+
     }
 
     /**
      * Get the value of Owner
-     *
-     * @return mixed
      */
     public function getOwner()
     {
@@ -78,10 +75,6 @@ class Account{
 
     /**
      * Set the value of Owner
-     *
-     * @param mixed owner
-     *
-     * @return self
      */
     public function setOwner($owner)
     {
@@ -92,8 +85,6 @@ class Account{
 
     /**
      * Get the value of Credit
-     *
-     * @return mixed
      */
     public function getCredit()
     {
@@ -102,10 +93,6 @@ class Account{
 
     /**
      * Set the value of Credit
-     *
-     * @param mixed credit
-     *
-     * @return self
      */
     public function setCredit($credit)
     {
