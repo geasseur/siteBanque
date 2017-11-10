@@ -16,7 +16,7 @@
     </head>
     <body>
       <header>
-        
+
       </header>
       <main>
         <article class="d-flex flex-column align-items-center card m-5">
@@ -73,12 +73,30 @@
             </article>
 
           </section>
-
-          <!-- form for return to index page -->
-          <form class="" action="../index.php" method="post">
-            <input type="submit" name="retour" value="retour">
-          </form>
       </main>
+      <footer class='bg-faded d-flex flex-row flex-nowrap justify-content-around mt-5 p-3'>
+        <!-- form for return to index page -->
+        <form class="" action="../index.php" method="post">
+          <input class='btn btn-primary' type="submit" name="retour" value="retour">
+        </form>
+
+        <!-- form for delete this account -->
+        <form class="" action="../index.php" method="post">
+          <input class='d-none' type="text" name="idAccount" value="<?php echo $displayAccount['id']; ?>">
+          <input class='btn btn-danger' type="submit" name="delete" value="Effacer ce compte">
+        </form>
+
+        <form class="" action="../index.php" method="post">
+          <label for="">Type de compte : </label>
+          <select class="" name="typeCompte">
+            <option value="livretA">Livret A</option>
+            <option value="livret+">livret +</option>
+            <option value="compteEtudiant">compteEtudiant</option>
+          </select><br>
+          <input class="d-none col-5" type="text" name="owner" value="<?php echo $displayAccount['owner']; ?>">
+          <input class='btn btn-success' type="submit" name="addAccount" value="créer compte">
+        </form>
+      </footer>
 
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

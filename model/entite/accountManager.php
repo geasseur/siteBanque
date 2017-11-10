@@ -26,11 +26,13 @@ class AccountManager{
       return $displayAccounts->fetchAll();
     }
 
+    //function for select all owner for select in 'virement bancaire' form
     public function selectOwners(){
       $displayAccounts = $this->_bdd->query('SELECT credit, owner from compte');
       return $displayAccounts->fetchAll();
     }
 
+    //function for select the owner choose in the form 'virement bancaire'
     public function selectOwner($account){
       $displayAccount = $this->_bdd->query('SELECT credit, owner from compte where owner = \''.$account->getOwner().'\' ');
       return $displayAccount->fetch();
