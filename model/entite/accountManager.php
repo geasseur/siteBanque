@@ -22,7 +22,7 @@ class AccountManager{
 
     //function for display all accounts on the index page
     public function displayAccounts(){
-      $displayAccounts = $this->_bdd->query('SELECT  id, type_account, owner, credit from compte');
+      $displayAccounts = $this->_bdd->query('SELECT  id, type_account, owner, credit,idUser from compte ');
       return $displayAccounts->fetchAll();
     }
 

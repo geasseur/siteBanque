@@ -23,18 +23,47 @@
             <img class='col-3' src="http://www.bluemaize.net/im/toys/pig-from-toy-story-3.jpg" class="col-4 col-lg-6" id="logoSite" alt="logo noir et blanc en forme de loup">
             <h1 class="col-4 col-lg-4">Bank of OCUS PORKUS</h1>
           </a>
-          <!-- form for create new account -->
-          <form class="ml-3" action="" method="post">
-            <label for="">Type de compte : </label>
-            <select class="" name="typeCompte">
-              <option value="livretA">Livret A</option>
-              <option value="livret+">livret +</option>
-              <option value="compteEtudiant">compteEtudiant</option>
-            </select><br>
-            <label for="">propriétaire :</label>
-            <input class="col-5" type="text" name="owner" value=""><br>
-            <input class='mt-2 btn btn-success' type="submit" name="addAccount" value="créer compte">
+          <?php if (!isset($_SESSION['pseudo'])): ?>
+
+
+          <!-- form for create a new user -->
+          <form class="card m-2 p-3" action="" method="post">
+            <label for="">nom utilisateur : </label><br>
+            <input type="text" name="userName" value=""><br>
+            <label for="">password : </label><br>
+            <input type="password" name="password" value=""><br>
+            <label for="">entrez à nouveau le mot de passe : </label><br>
+            <input type="password" name="passwordTest" value=""><br>
+            <label for="">mail : </label><br>
+            <input type="text" name="mail" value=""><br>
+            <input type="submit" name="userCreation" value="Créer utilisateur">
           </form>
+
+          <!-- form for connect user -->
+          <form class="card m-2 p-3" action="" method="post">
+            <label for="">nom utilisateur : </label><br>
+            <input type="text" name="connectUserName" value=""><br>
+            <label for="">password : </label><br>
+            <input type="text" name="Connectpassword" value=""><br>
+            <input type="submit" name="userConnexion" value="se connecter">
+          </form>
+          <?php endif; ?>
+
+          <?php if (isset($_SESSION['user'])): ?>
+            <!-- form for create new account -->
+            <form class="ml-3" action="" method="post">
+              <label for="">Type de compte : </label>
+              <select class="" name="typeCompte">
+                <option value="livretA">Livret A</option>
+                <option value="livret+">livret +</option>
+                <option value="compteEtudiant">compteEtudiant</option>
+              </select><br>
+              <label for="">propriétaire :</label>
+              <input class="col-5" type="text" name="owner" value=""><br>
+              <input class='mt-2 btn btn-success' type="submit" name="addAccount" value="créer compte">
+            </form>
+          <?php endif; ?>
+
         </nav>
       </header>
       <main class='bg-faded'>
