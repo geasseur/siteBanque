@@ -40,16 +40,16 @@
           </form>
 
           <!-- form for connect user -->
-          <form class="card m-2 p-3" action="" method="post">
+          <form class="card m-5 p-3" action="" method="post">
             <label for="">nom utilisateur : </label><br>
             <input type="text" name="connectUserName" value=""><br>
             <label for="">password : </label><br>
-            <input type="text" name="Connectpassword" value=""><br>
+            <input type="password" name="connectPassword" value=""><br>
             <input type="submit" name="userConnexion" value="se connecter">
           </form>
           <?php endif; ?>
 
-          <?php if (isset($_SESSION['user'])): ?>
+          <?php if (isset($_SESSION['pseudo'])): ?>
             <!-- form for create new account -->
             <form class="ml-3" action="" method="post">
               <label for="">Type de compte : </label>
@@ -58,10 +58,17 @@
                 <option value="livret+">livret +</option>
                 <option value="compteEtudiant">compteEtudiant</option>
               </select><br>
-              <label for="">propriétaire :</label>
-              <input class="col-5" type="text" name="owner" value=""><br>
+              <input type="text" name="idUser" value="<?php echo $_SESSION['id'] ?>">
+              <label for="">propriétaire :</label><br>
+              <input class="col-5" type="text" name="owner" value="<?php echo $_SESSION['pseudo'] ?>"><br>
               <input class='mt-2 btn btn-success' type="submit" name="addAccount" value="créer compte">
             </form>
+
+            <!-- form disconnect user -->
+            <form class="" action="" method="post">
+              <input type="submit" name="deconnexion" value="se Deconnecter">
+            </form>
+
           <?php endif; ?>
 
         </nav>
@@ -70,26 +77,30 @@
         <!-- section where all account are display -->
         <section class='container-fluid ml-5 d-flex flex-wrap justify-content-around'>
         <?php
-        foreach ($displayAccounts as $key => $value) { ?>
-          <section style='height : 400px' class='card m-3 col-sm-11 col-lg-5 col-xl-3 d-flex flex-column justify-content-around'>
-              <h3 class='m-4'><?php echo $value['owner']; ?></h3>
-              <h5 class='m-4'><?php echo $value['credit']; ?> €</h5>
-              <p class='m-4'><?php echo $value['type_account']; ?></p>
-              <!-- Form for account detail -->
-              <form class="" action="control/controlDetail.php" method="post">
-                <input class='d-none' type="text" name="idAccount" value="<?php echo $value['id']?>">
-                <input class='btn m-2' type="submit" name="detail" value="Detail">
-              </form>
+        if (isset($_SESSION['pseudo'])) {
+          if (!empty($displayAccounts)) {
+            foreach ($displayAccounts as $key => $value) { ?>
+              <section style='height : 400px' class='card m-3 col-sm-11 col-lg-5 col-xl-3 d-flex flex-column justify-content-around'>
+                  <h3 class='m-4'><?php echo $value['owner']; ?></h3>
+                  <h5 class='m-4'><?php echo $value['credit']; ?> €</h5>
+                  <p class='m-4'><?php echo $value['type_account']; ?></p>
+                  <!-- Form for account detail -->
+                  <form class="" action="control/controlDetail.php" method="post">
+                    <input class='d-non' type="text" name="idAccount" value="<?php echo $value['compteId']?>">
+                    <input class='btn m-2' type="submit" name="detail" value="Detail">
+                  </form>
 
-              <!-- form for delete account -->
-              <form class="" action="" method="post">
-                <input style='display:none' type="text" name="idAccount" value="<?php echo $value['id']?>">
-                <input class='btn btn-danger m-2' type="submit" name="delete" value="Effacer Compte">
-              </form>
-            </article>
-          </section>
-        <?php
-        } ?>
+                  <!-- form for delete account -->
+                  <form class="" action="" method="post">
+                    <input class='d-non' type="text" name="idAccount" value="<?php echo $value['compteId']?>">
+                    <input class='btn btn-danger m-2' type="submit" name="delete" value="Effacer Compte">
+                  </form>
+                </article>
+              </section>
+            <?php
+          }
+        }
+    } ?>
         </section>
       </main>
 

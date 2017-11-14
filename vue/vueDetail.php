@@ -82,7 +82,7 @@
 
         <!-- form for delete this account -->
         <form class="" action="../index.php" method="post">
-          <input class='d-none' type="text" name="idAccount" value="<?php echo $displayAccount['id']; ?>">
+          <input class='' type="text" name="idAccount" value="<?php echo $displayAccount['id']; ?>">
           <input class='btn btn-danger' type="submit" name="delete" value="Effacer ce compte">
         </form>
 
@@ -94,7 +94,8 @@
             <option value="livret+">livret +</option>
             <option value="compteEtudiant">compteEtudiant</option>
           </select><br>
-          <input class="d-none col-5" type="text" name="owner" value="<?php echo $displayAccount['owner']; ?>">
+          <input class=" col-5" type="text" name="idUser" value="<?php echo $displayAccount['idUser']; ?>">
+          <input type="text" name="owner" value="<?php echo $displayAccount['owner']; ?>">
           <input class='btn btn-success' type="submit" name="addAccount" value="créer compte">
         </form>
       </footer>
