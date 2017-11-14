@@ -2,6 +2,7 @@
 class Account{
   protected $id;
   protected $typeAccount;
+  protected $idUser;
   protected $owner;
   protected $credit;
 
@@ -98,6 +99,25 @@ class Account{
     {
         $credit = (float) $credit;
         $this->credit = $credit;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Id User 
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set the value of Id User
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
 
         return $this;
     }

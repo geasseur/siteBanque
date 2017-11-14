@@ -21,9 +21,19 @@ class AccountManager{
     }
 
     //function for display all accounts on the index page
-    public function displayAccounts(){
-      $displayAccounts = $this->_bdd->query('SELECT  id, type_account, owner, credit from compte');
-      return $displayAccounts->fetchAll();
+    public function displayAccounts(User $user){
+      $displayAccounts = $this->_bdd->query('SELECT compte.id as compteId, utilisateur.id, idUser, pseudo, type_account, owner, credit
+      from compte
+      inner join utilisateur
+      on utilisateur.id = idUser
+      where pseudo = "'.$user->getPseudo().'" ');
+      if ($displayAccounts == true) {
+
+        return $displayAccounts->fetchAll();
+      }
+      else{
+        var_dump($displayAccounts);
+      }
     }
 
     //function for select all owner for select in 'virement bancaire' form
@@ -41,14 +51,21 @@ class AccountManager{
 
     //function for display one account on the detail page
     public function displayAccount(Account $account){
-      $displayAccount = $this->_bdd->query('SELECT id, type_account, owner, credit from compte WHERE id = '.$account->getId().' ');
+      $displayAccount = $this->_bdd->query('SELECT id, idUser, type_account, owner, credit from compte WHERE id = '.$account->getId().' ');
       return $displayAccount->fetch();
+      // $displayAccount = $this->_bdd->query('SELECT compte.id as idCompte, idUser, type_account, owner, credit
+      // from compte inner join utilisateur
+      // on idCompte = idUser
+      // WHERE idCompte = '.$account->getId().' ');
+      // var_dump($displayAccount);
+      // return $displayAccount->fetch();
     }
 
     // function for added a new account
     public function addAccount(Account $account){
-      $addAccount = $this->_bdd->prepare('INSERT INTO compte(type_account, owner, credit) values  (:type_account, :owner, :credit) ');
+      $addAccount = $this->_bdd->prepare('INSERT INTO compte(type_account, idUser, owner, credit) values  (:type_account, :idUser, :owner, :credit) ');
       $addAccount->bindValue(':type_account', $account->getTypeAccount(), PDO::PARAM_STR);
+      $addAccount->bindValue(':idUser',$account->getIdUser(), PDO::PARAM_INT);
       $addAccount->bindValue(':owner', $account->getOwner(), PDO::PARAM_STR);
       $addAccount->bindValue(':credit',$account->getCredit(), PDO::PARAM_INT);
       $addAccount->execute();
