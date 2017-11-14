@@ -19,7 +19,7 @@
 
       </header>
       <main>
-        <article class="d-flex flex-column align-items-center card m-5">
+        <article class="d-flex flex-column align-items-center bg-faded mb-4">
           <!-- display account -->
           <h1>Compte</h1>
           <h3>Compte Courant de : <?php echo $displayAccount['owner']; ?></h3>
@@ -74,28 +74,28 @@
 
           </section>
       </main>
-      <footer class='bg-faded d-flex flex-row flex-nowrap justify-content-around mt-5 p-3'>
+      <footer class='bg-faded d-flex flex-row flex-wrap justify-content-around align-items-center mt-5 p-3'>
         <!-- form for return to index page -->
-        <form class="" action="../index.php" method="post">
+        <form class="m-5" action="../index.php" method="post">
           <input class='btn btn-primary' type="submit" name="retour" value="retour">
         </form>
 
         <!-- form for delete this account -->
-        <form class="" action="../index.php" method="post">
-          <input class='' type="text" name="idAccount" value="<?php echo $displayAccount['id']; ?>">
+        <form class="m-5" action="../index.php" method="post">
+          <input class='d-none' type="text" name="idAccount" value="<?php echo $displayAccount['id']; ?>">
           <input class='btn btn-danger' type="submit" name="delete" value="Effacer ce compte">
         </form>
 
         <!-- form for create a new account for this user -->
-        <form class="" action="../index.php" method="post">
+        <form class="m-5" action="../index.php" method="post">
           <label for="">Type de compte : </label>
           <select class="" name="typeCompte">
             <option value="livretA">Livret A</option>
             <option value="livret+">livret +</option>
             <option value="compteEtudiant">compteEtudiant</option>
           </select><br>
-          <input class=" col-5" type="text" name="idUser" value="<?php echo $displayAccount['idUser']; ?>">
-          <input type="text" name="owner" value="<?php echo $displayAccount['owner']; ?>">
+          <input class="d-none col-5" type="text" name="idUser" value="<?php echo $displayAccount['idUser']; ?>">
+          <input class='d-none' type="text" name="owner" value="<?php echo $displayAccount['owner']; ?>">
           <input class='btn btn-success' type="submit" name="addAccount" value="créer compte">
         </form>
       </footer>

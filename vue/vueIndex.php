@@ -36,7 +36,7 @@
             <input type="password" name="passwordTest" value=""><br>
             <label for="">mail : </label><br>
             <input type="text" name="mail" value=""><br>
-            <input type="submit" name="userCreation" value="Créer utilisateur">
+            <input class='btn btn-primary' type="submit" name="userCreation" value="Créer utilisateur">
           </form>
 
           <!-- form for connect user -->
@@ -45,7 +45,7 @@
             <input type="text" name="connectUserName" value=""><br>
             <label for="">password : </label><br>
             <input type="password" name="connectPassword" value=""><br>
-            <input type="submit" name="userConnexion" value="se connecter">
+            <input class='btn btn-primary' type="submit" name="userConnexion" value="se connecter">
           </form>
           <?php endif; ?>
 
@@ -58,15 +58,14 @@
                 <option value="livret+">livret +</option>
                 <option value="compteEtudiant">compteEtudiant</option>
               </select><br>
-              <input type="text" name="idUser" value="<?php echo $_SESSION['id'] ?>">
-              <label for="">propriétaire :</label><br>
-              <input class="col-5" type="text" name="owner" value="<?php echo $_SESSION['pseudo'] ?>"><br>
+              <input class='d-none' type="text" name="idUser" value="<?php echo $_SESSION['id'] ?>">
+              <input class="d-none col-5" type="text" name="owner" value="<?php echo $_SESSION['pseudo'] ?>"><br>
               <input class='mt-2 btn btn-success' type="submit" name="addAccount" value="créer compte">
             </form>
 
             <!-- form disconnect user -->
-            <form class="" action="" method="post">
-              <input type="submit" name="deconnexion" value="se Deconnecter">
+            <form class="m-3" action="" method="post">
+              <input class='btn btn-warning' type="submit" name="deconnexion" value="se Deconnecter">
             </form>
 
           <?php endif; ?>
@@ -86,13 +85,13 @@
                   <p class='m-4'><?php echo $value['type_account']; ?></p>
                   <!-- Form for account detail -->
                   <form class="" action="control/controlDetail.php" method="post">
-                    <input class='d-non' type="text" name="idAccount" value="<?php echo $value['compteId']?>">
+                    <input class='d-none' type="text" name="idAccount" value="<?php echo $value['compteId']?>">
                     <input class='btn m-2' type="submit" name="detail" value="Detail">
                   </form>
 
                   <!-- form for delete account -->
                   <form class="" action="" method="post">
-                    <input class='d-non' type="text" name="idAccount" value="<?php echo $value['compteId']?>">
+                    <input class='d-none' type="text" name="idAccount" value="<?php echo $value['compteId']?>">
                     <input class='btn btn-danger m-2' type="submit" name="delete" value="Effacer Compte">
                   </form>
                 </article>
